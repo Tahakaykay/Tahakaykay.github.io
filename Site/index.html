@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sınıf Galerisi - Girne Koleji</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('logo.png') no-repeat center center fixed;
+      background-size: 50%;
+      background-color: #f3f3f3;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-right: 2px solid #ccc;
+      padding: 20px;
+      height: 100vh;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .sidebar ul li {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #0077cc;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .sidebar ul li:hover {
+      color: #005999;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    #dateTitle {
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .media-card {
+      background-color: #fff;
+      border: 2px solid #ddd;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .media-card img,
+    .media-card video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Sol Menü: Tarihler -->
+    <div class="sidebar">
+      <h2>Tarihler</h2>
+      <ul>
+        <li onclick="showGallery('5_ocak', '5 Ocak - Okul Gezisi')">📅 5 Ocak - Okul Gezisi</li>
+        <li onclick="showGallery('12_ocak', '12 Ocak - Proje Günü')">📅 12 Ocak - Proje Günü</li>
+        <li onclick="showGallery('tum', 'Genel Galeri')">📷 Tüm Anılar</li>
+      </ul>
+    </div>
+
+    <!-- Sağ: Galeri Alanı -->
+    <div class="content">
+      <div id="dateTitle">📷 Genel Galeri</div>
+
+      <!-- Genel Galeri -->
+      <div id="tum" class="gallery">
+        <div class="media-card">
+          <img src="media/5_ocak/foto1.jpg" alt="Okul Gezisi">
+          <div class="caption">5 Ocak - Gezi Başlangıcı</div>
+        </div>
+        <div class="media-card">
+          <img src="media/12_ocak/foto1.jpg" alt="Proje Günü">
+          <div class="caption">12 Ocak - Proje Hazırlığı</div>
+        </div>
+        <div class="media-card">
+          <video controls>
+            <source src="media/5_ocak/video1.mp4" type="video/mp4">
+          </video>
+          <div class="caption">5 Ocak - Gezi Videosu</div>
+        </div>
+        <!-- Buraya MUN Fotoğrafı eklendi -->
+        <div class="media-card">
+          <img src="foto1.jpg" alt="MUN Fotoğrafı">
+          <div class="caption">MUN Fotoğrafı</div>
+        </div>
+      </div>
+
+      <!-- 5 Ocak Galerisi -->
+      <div id="5_ocak" class="gallery hidden">
+        <div class="media-card">
+          <img src="media/5_ocak/foto1.jpg" alt="Okul Gezisi">
+          <div class="caption">Gezi Başlangıcı</div>
+        </div>
+        <div class="media-card">
+          <video controls>
+            <source src="media/5_ocak/video1.mp4" type="video/mp4">
+          </video>
+          <div class="caption">Gezi Vlog</div>
+        </div>
+      </div>
+
+      <!-- 12 Ocak Galerisi -->
+      <div id="12_ocak" class="gallery hidden">
+        <div class="media-card">
+          <img src="media/12_ocak/foto1.jpg" alt="Proje Günü">
+          <div class="caption">Proje Hazırlığı</div>
+        </div>
+        <div class="media-card">
+          <video controls>
+            <source src="media/12_ocak/video1.mp4" type="video/mp4">
+          </video>
+          <div class="caption">Sunum Videosu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function showGallery(id, title) {
+      const galleries = document.querySelectorAll('.gallery');
+      galleries.forEach(g => g.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById('dateTitle').innerText = '📅 ' + title;
+    }
+
+    window.onload = function () {
+      showGallery('tum', 'Genel Galeri');
+    };
+  </script>
+
+</body>
+</html>
